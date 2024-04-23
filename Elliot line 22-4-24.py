@@ -8,48 +8,47 @@ https://www.facebook.com/groups/1923323131245618/permalink/3966411526936758/
 
 from math import floor,pi
 
-chordsum = 1.0
-k=1 
+def calculate_ratio():
+  chordsum = 1.0
+  k=1 
 
-pi_over_4 = pi/4.0
+  pi_over_4 = pi/4.0
 
-sqrt3 = 3**0.5
+  sqrt3 = 3**0.5
 
-while 1:
-  x = 2*k
-  # find even integer m :  m < sqrt(3)*x < m+2
-  m = int( sqrt3*x )
-  if m%2: m -= 1
+  while 1:
+    x = 2*k
+    # find even integer m :  m < sqrt(3)*x < m+2
+    m = int( sqrt3*x )
+    if m%2: m -= 1
 
-  # chord length for circle centred at (x,m)
-  y1 = m
-  d1 = ( sqrt3*x - y1)/2.0
-  if abs(d1) >=1.0:
-    chord1 = 0.0
-  else:
+    # chord length for circle centred at (x,m)
+    y1 = m
+    d1 = ( sqrt3*x - y1)/2.0
+    #assert abs(d1) < 1.0
     chord1 = 2*(1.0 - d1*d1)**0.5
 
-  # chord length for circle centred at (x,m+2)
-  y2 = m+2  
-  d2 = ( sqrt3*x - y2)/2.0
-  if abs(d2) >= 1.0:
-    chord2 = 0.0
-  else:
+    # chord length for circle centred at (x,m+2)
+    y2 = m+2  
+    d2 = ( sqrt3*x - y2)/2.0
+    #assert abs(d2) < 1.0
     chord2 = 2*(1.0 - d2*d2)**0.5
 
-  chordsum += chord1
-  chordsum += chord2
+    chordsum += chord1
+    chordsum += chord2
 
-  hypotenuse = 2*(x+1)
+    hypotenuse = 2*(x+1)
 
-  ratio = chordsum/hypotenuse
+    ratio = chordsum/hypotenuse
 
-  if k%5000000==0:
-    print(k, ratio, ratio- pi_over_4)
-    
+    if k%5000000==0:
+      print(k, ratio, ratio - pi_over_4)
+      
 
-  k+=1
-  
+    k+=1
+
+
+calculate_ratio()  
 """
 results
 
